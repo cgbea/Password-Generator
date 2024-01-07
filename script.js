@@ -88,54 +88,64 @@ var upperCasedCharacters = [
   "Z",
 ];
 
-
 // Function to prompt user for password options
 
-
 function getPasswordOptions() {
-  var passwordLen = prompt("How many characters would you like your password to have?");          
-     if (passwordLen < 8 || passwordLen > 128) {
-     alert("I'm sorry, your password must be between 8 and 128 characters long");
-     getPasswordOptions();
+  var passwordLen = prompt(
+    "How many characters would you like your password to have?"
+  );
+  if (passwordLen < 8 || passwordLen > 128) {
+    alert("I'm sorry, your password must be between 8 and 128 characters long");
+    getPasswordOptions();
   } else {
-    var anyLowercase = confirm("Next, click 'OK' to include lowercase characters. Click 'Cancel' to pass");
-    var anyUppercase = confirm("Sure! Now click 'OK' to include uppercase characters or 'Cancel' to pass");
-    var anyNumbers = confirm("Got it! Now click 'OK' to include numbers or 'Cancel' to pass");
-    var anySpecial = confirm("Lastly, click 'OK' to include special characters or 'Cancel' to pass");
-    
-   // Create password character array based on user input 
+    var anyLowercase = confirm(
+      "Next, click 'OK' to include lowercase characters. Click 'Cancel' to pass"
+    );
+    var anyUppercase = confirm(
+      "Sure! Now click 'OK' to include uppercase characters or 'Cancel' to pass"
+    );
+    var anyNumbers = confirm(
+      "Got it! Now click 'OK' to include numbers or 'Cancel' to pass"
+    );
+    var anySpecial = confirm(
+      "Lastly, click 'OK' to include special characters or 'Cancel' to pass"
+    );
 
-    var password="";
+    // Create password character array based on user input
+
+    var password = "";
     var passwordArray = [];
-    if (anyLowercase === true){
-      passwordArray=passwordArray.concat(lowerCasedCharacters)
+    if (anyLowercase === true) {
+      passwordArray = passwordArray.concat(lowerCasedCharacters);
     }
-    if (anyUppercase === true){
-      passwordArray=passwordArray.concat(upperCasedCharacters)
+    if (anyUppercase === true) {
+      passwordArray = passwordArray.concat(upperCasedCharacters);
     }
-    if (anyNumbers === true){
-      passwordArray=passwordArray.concat(numericCharacters)
+    if (anyNumbers === true) {
+      passwordArray = passwordArray.concat(numericCharacters);
     }
-    if (anySpecial === true){
-      passwordArray=passwordArray.concat(specialCharacters)
+    if (anySpecial === true) {
+      passwordArray = passwordArray.concat(specialCharacters);
     }
-// Function for getting a random element from an array
+    // Getting a random element from an array
     if (passwordArray < 1) {
       alert("You must select at least one of the four character types");
       getPasswordOptions();
     }
+    // Creating the password according to user's specification
     for (var i = 0; i < passwordLen; i++) {
-    function getRandom(passwordArray){
-      return passwordArray[Math.floor(Math.random()*passwordArray.length)];}
-      password = password + getRandom(passwordArray)
+      function getRandom(passwordArray) {
+        return passwordArray[Math.floor(Math.random() * passwordArray.length)];
       }
-      var passwordText = document.querySelector("#password");
-
-      passwordText.value = password;
+      password = password + getRandom(passwordArray);
     }
- 
+
+    // Display password in window
+    var passwordText = document.querySelector("#password");
+
+    passwordText.value = password;
+  }
 }
-  
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
